@@ -17,14 +17,9 @@ export class HeaderComponent {
   @Input({required: true}) userName: string = ''
 
   private auth = inject(AuthService)
-  private moviesService = inject(MoviesService)
-
   public navItems = ["Home", "TV Shows", "My List", "Browse by Language"]
-
 
   public signOut() {
     this.auth.signOut()
   }
-
-
 }

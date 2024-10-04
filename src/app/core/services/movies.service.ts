@@ -12,7 +12,7 @@ const options = {
   },
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5ZmIzZmZhMmU1MmJkNDE0MDY4ODhkMzY0MTQ4YjU1NiIsIm5iZiI6MTcyNzc0ODQ5Ny43NTYwMDYsInN1YiI6IjY2NzlhNGIwYTk2YmNiZjYyYmI4NTc3OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RfQRJSx1N9uFDbisSpF0x4x4QJ5lXQzhllKK8sKGadU'
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5ZmIzZmZhMmU1MmJkNDE0MDY4ODhkMzY0MTQ4YjU1NiIsIm5iZiI6MTcyODAxMzczNi4wNjI4MzMsInN1YiI6IjY2NzlhNGIwYTk2YmNiZjYyYmI4NTc3OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.jORx-pRpuHLwSy9YL4R0jQlWPaFRpYuL0I0rgSzHio0'
   }
 }
 
@@ -26,42 +26,42 @@ export class MoviesService {
   public http = inject(HttpClient)
 
   public getMovies() {
-    return this.http.get<any>(`${BASE_URL}/discover/movie`, options)
+    return this.http.get<any>(`https://api.themoviedb.org/3/discover/movie`, options)
   }
 
   getTvShows() {
-    return this.http.get(`${BASE_URL}/3/discover/tv`, options)
+    return this.http.get(`https://api.themoviedb.org/3/discover/tv`, options)
   }
 
   getRatedMovies() {
-    return this.http.get(`${BASE_URL}/3/guest_session/guest_session_id/rated/movies`, options)
+    return this.http.get(`${BASE_URL}/rated/movies`, options)
   }
 
   getBannerImage(id: number) {
-    return this.http.get(`${BASE_URL}/3/movie/${id}/images`, options)
+    return this.http.get(`${BASE_URL}/movie/${id}/images`, options)
   }
 
   getBannerVideo(id: number) {
-    return this.http.get(`${BASE_URL}/3/movie/${id}/videos`, options);
+    return this.http.get(`${BASE_URL}/movie/${id}/videos`, options);
   }
 
   getBannerDetail(id: number) {
-    return this.http.get(`${BASE_URL}/3/movie/${id}`, options);
+    return this.http.get(`${BASE_URL}/movie/${id}`, options);
   }
 
   getNowPlayingMovies() {
-    return this.http.get(`${BASE_URL}/3/movie/now_playing`, options)
+    return this.http.get(`${BASE_URL}/movie/now_playing`, options)
   }
 
   getPopularMovies() {
-    return this.http.get(`${BASE_URL}/3/movie/popular`, options)
+    return this.http.get(`${BASE_URL}/movie/popular`, options)
   }
 
   getTopRated() {
-    return this.http.get(`${BASE_URL}/3/movie/top_rated`, options)
+    return this.http.get(`${BASE_URL}/movie/top_rated`, options)
   }
 
   getUpcomingMovies() {
-    return this.http.get(`${BASE_URL}/3/movie/upcoming`, options)
+    return this.http.get(`${BASE_URL}/movie/upcoming`, options)
   }
 }

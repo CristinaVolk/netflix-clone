@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, inject, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-banner',
@@ -7,10 +8,16 @@ import { Component } from '@angular/core';
   templateUrl: './banner.component.html',
   styleUrl: './banner.component.scss'
 })
-export class BannerComponent {
-  // "https://www.youtube.com/embed/rhjlrA7VYD0?autoplay=1&mute=1&loop=1"
-  public videoUrl = "https://www.youtube.com/embed/7UQRJ3q-7Qc?autoplay=1&mute=1&loop=1"
-  public bannerTitle: string = 'Animal'
-  public bannerOverview: string = 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur in recusandae saepe? Quas quisquam, recusandae.'
+export class BannerComponent implements OnChanges {
+  @Input({required: true}) bannerTitle: string = ''
+  @Input() bannerOverview: string = ''
+  @Input() key: string = ''
+  private sanitizer = inject(DomSanitizer)
+  public videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.key}?autoplay=1&mute=1&loop=1`)
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['key']) {
+     this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.key}?autoplay=1&mute=1&loop=1`)
+    }
+  }
 }
